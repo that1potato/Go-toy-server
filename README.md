@@ -2,9 +2,9 @@
 
 A toy go server for practice.
 
-# Production-readiness checklist
+## Production-readiness checklist
 
-## Done
+### Done
 - [x] Method-based routing with Go 1.22+ `ServeMux` patterns (`GET /health`, `POST /items`)
 - [x] Per-request timeout middleware (context with deadline)
 - [x] Basic health endpoint (`/health`)
@@ -15,7 +15,7 @@ A toy go server for practice.
 - [x] Waiting on background tasks with a deadline (`waitGroupWithContext`)
 - [x] One shared shutdown budget for server + background tasks
 
-## Must
+### Must
 - [ ] Server-level timeouts on `http.Server` (`ReadHeaderTimeout`, `ReadTimeout`, `WriteTimeout`, `IdleTimeout`)
 - [ ] Request body size limit (`http.MaxBytesReader`)
 - [ ] Tests with `net/http/httptest`
@@ -23,7 +23,7 @@ A toy go server for practice.
 - [ ] Request logging with status code and duration (log after the handler runs)
 - [ ] Structured logging with `log/slog`
 
-## Should
+### Should
 - [ ] Config from environment variables or flags (port, timeouts, task count)
 - [ ] Readiness check that starts failing once shutdown begins
 - [ ] Correct status codes (e.g. replace 408 for server-side timeouts)
@@ -31,6 +31,6 @@ A toy go server for practice.
 - [ ] Make every handler respect `ctx.Done()` (middleware timeout only works if handlers cooperate)
 - [ ] Atomic background tasks (open design question: longer budget, stop starting new tasks, or crash-safe commit)
 
-## Later
+### Later
 - [ ] Metrics (e.g. Prometheus)
 - [ ] Tracing (e.g. OpenTelemetry)
