@@ -14,10 +14,10 @@ A toy go server for practice.
 - [x] Background tasks tracked with a `sync.WaitGroup` (passed by pointer, `Add` before `go`)
 - [x] Waiting on background tasks with a deadline (`waitGroupWithContext`)
 - [x] One shared shutdown budget for server + background tasks
+- [x] Request body size limit (`http.MaxBytesReader`)
 
 ### Must
 - [ ] Server-level timeouts on `http.Server` (`ReadHeaderTimeout`, `ReadTimeout`, `WriteTimeout`, `IdleTimeout`)
-- [ ] Request body size limit (`http.MaxBytesReader`)
 - [ ] Tests with `net/http/httptest`
 - [ ] Remove debug `A`/`B` log lines
 - [ ] Request logging with status code and duration (log after the handler runs)

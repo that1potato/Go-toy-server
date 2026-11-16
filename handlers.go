@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"log"
 	"net/http"
 	"time"
@@ -29,14 +30,22 @@ func tenSecHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func itemsHandler(w http.ResponseWriter, r *http.Request) {
+	const itemsRequestSizeLimit = 1024
+	rc := http.MaxBytesReader(w, r.Body, itemsRequestSizeLimit)
+
 	// parse input
 	type requestParams struct {
 		Items []string `json:"items"`
 	}
-	decoder := json.NewDecoder(r.Body)
+	decoder := json.NewDecoder(rc)
 	params := requestParams{}
 	err := decoder.Decode(&params)
 	if err != nil {
+		if _, ok := errors.AsType[*http.MaxBytesError](err); ok {
+			log.Print("Error: Request size too large.")
+			w.WriteHeader(http.StatusRequestEntityTooLarge)
+			return
+		}
 		log.Print("Error decoding for /items")
 		w.WriteHeader(http.StatusBadRequest)
 		return
