@@ -19,7 +19,6 @@ A toy go server for practice.
 ### Must
 - [ ] Server-level timeouts on `http.Server` (`ReadHeaderTimeout`, `ReadTimeout`, `WriteTimeout`, `IdleTimeout`)
 - [ ] Tests with `net/http/httptest`
-- [ ] Remove debug `A`/`B` log lines
 - [ ] Request logging with status code and duration (log after the handler runs)
 - [ ] Structured logging with `log/slog`
 
